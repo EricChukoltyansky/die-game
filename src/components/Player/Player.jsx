@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './Player.scss'
+import './Player.css'
 
 export default class Player extends Component {
   render() {

@@ -1,4 +1,4 @@
-import "./Dice.scss";
+import "./Dice.css";
 
 import React, { Component } from "react";
 

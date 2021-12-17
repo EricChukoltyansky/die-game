@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from "../components/Button/Button";
 import Dice from "../components/Dices/Dice";
 import Player from "../components/Player/Player";
-import "./GamePresentation.styles.scss";
+import "./GamePresentation.styles.css";
 import img1 from "../components/images/dice-1.png";
 import img2 from "../components/images/dice-2.png";
 import img3 from "../components/images/dice-3.png";
