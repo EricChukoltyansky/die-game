@@ -1,0 +1,49 @@
+body {
+  background-image: url("https://images.pexels.com/photos/1111597/pexels-photo-1111597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+}
+
+.game-board {
+  display: flex;
+  margin: 0 auto;
+  font-family: "Lobster", cursive;
+  height: 100%;
+}
+
+.game-control {
+  margin-top: 50px;
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-44%);
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+.player-container {
+  width: 50vw;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.top {
+  // border: 1px solid black;
+  text-align: center;
+  margin-right: 55px;
+}
+
+.bottom {
+  // border: 1px solid black;
+  // transform: : translate();
+  display: flex;
+  flex-direction: column;
+  margin-top: 60%;
+}
