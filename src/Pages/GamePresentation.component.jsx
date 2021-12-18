@@ -30,24 +30,71 @@ export default class GamePresentation extends Component {
     double6: "In case of 6:6, turn over",
   };
 
+  componentDidMount = () => {
+    if (JSON.parse(window.sessionStorage.getItem("player1Total"))) {
+      this.setState((pervState) => {
+        return (pervState.player1.total = JSON.parse(
+          window.sessionStorage.getItem("player1Total")
+        ));
+      });
+    }
+    if (JSON.parse(window.sessionStorage.getItem("player2Total"))) {
+      this.setState((pervState) => {
+        return (pervState.player2.total = JSON.parse(
+          window.sessionStorage.getItem("player2Total")
+        ));
+      });
+    }
+    if (JSON.parse(window.sessionStorage.getItem("count1"))) {
+      this.setState((pervState) => {
+        return (pervState.player1.count = JSON.parse(
+          window.sessionStorage.getItem("count1")
+        ));
+      });
+    }
+    if (JSON.parse(window.sessionStorage.getItem("count2"))) {
+      this.setState((pervState) => {
+        return (pervState.player2.count = JSON.parse(
+          window.sessionStorage.getItem("count2")
+        ));
+      });
+    }
+  };
+
   updatePlayerSelection(firstDice, secondDice) {
     this.state.player1.isCurrent &&
-      this.setState({
-        player1: {
-          count: this.state.player1.count + firstDice + secondDice,
-          total: this.state.player1.total,
-          isCurrent: true,
+      this.setState(
+        {
+          player1: {
+            count: this.state.player1.count + firstDice + secondDice,
+            total: this.state.player1.total,
+            isCurrent: true,
+          },
         },
-      });
+        () => {
+          sessionStorage.setItem(
+            "count1",
+            JSON.stringify(this.state.player1.count)
+          );
+        }
+      );
 
     this.state.player2.isCurrent &&
-      this.setState({
-        player2: {
-          count: this.state.player2.count + firstDice + secondDice,
-          total: this.state.player2.total,
-          isCurrent: true,
+      this.setState(
+        {
+          player2: {
+            count: this.state.player2.count + firstDice + secondDice,
+            total: this.state.player2.total,
+            isCurrent: true,
+          },
         },
-      });
+        () => {
+          sessionStorage.setItem(
+            "count2",
+            JSON.stringify(this.state.player2.count)
+          );
+        }
+      );
   }
 
   throwDice() {
@@ -57,23 +104,10 @@ export default class GamePresentation extends Component {
       this.setState({
         double6: "6:6 Go Home!",
       });
-      if (this.state.player1.isCurrent) {
-        this.setState({
-          player1: {
-            count: 0,
-            total: 0,
-            isCurrent: false,
-          },
-        });
-      } else {
-        this.setState({
-          player2: {
-            count: 0,
-            total: 0,
-            isCurrent: false,
-          },
-        });
-      }
+      this.switchPlayers();
+      setTimeout(() => {
+        this.setState({ double6: "In case of 6:6, turn over" });
+      }, 3000);
     } else {
       this.setState({
         dice: [firstDice, secondDice],
@@ -123,14 +157,26 @@ export default class GamePresentation extends Component {
 
   playerHold() {
     let currentPlayer = this.state.player1.isCurrent ? "player1" : "player2";
-    this.setState({
-      [currentPlayer]: {
-        count: "",
-        total:
-          this.state[currentPlayer].total + this.state[currentPlayer].count,
-        isCurrent: true,
+    this.setState(
+      {
+        [currentPlayer]: {
+          count: "",
+          total:
+            this.state[currentPlayer].total + this.state[currentPlayer].count,
+          isCurrent: true,
+        },
       },
-    });
+      () => {
+        sessionStorage.setItem(
+          "player1Total",
+          JSON.stringify(this.state.player1.total)
+        );
+        sessionStorage.setItem(
+          "player2Total",
+          JSON.stringify(this.state.player2.total)
+        );
+      }
+    );
     console.log(winningScore);
     this.winnerCheck(winningScore);
     this.switchPlayers();
@@ -176,8 +222,6 @@ export default class GamePresentation extends Component {
   // TODO check if it is possible to win by gap from the winning score
 
   render() {
-    // console.log(this.state.winningPoint);
-    // console.log(this.state.banner);
     const die = [img1, img2, img3, img4, img5, img6];
     return (
       <div className="game-board">
