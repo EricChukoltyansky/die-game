@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Lobster&display=swap");
+
 body {
   background-image: url("https://images.pexels.com/photos/1111597/pexels-photo-1111597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-size: cover;
@@ -63,12 +65,11 @@ body {
 @media (max-width: 760px) {
   .messages {
     margin-top: 180px;
-   
   }
 }
 
 @media (max-width: 555px) {
-.messages {
-  height:29%
-}
+  .messages {
+    height: 29%;
+  }
 }
