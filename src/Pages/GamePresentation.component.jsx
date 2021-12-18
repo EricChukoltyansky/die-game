@@ -10,7 +10,7 @@ import img4 from "../components/images/dice-4.png";
 import img5 from "../components/images/dice-5.png";
 import img6 from "../components/images/dice-6.png";
 
-let maxPoints = 30;
+let winningScore;
 
 export default class GamePresentation extends Component {
   state = {
@@ -25,9 +25,9 @@ export default class GamePresentation extends Component {
       isCurrent: false,
     },
     dice: ["", ""],
-    winningPoint: 0,
-    banner: "",
-    double6: "",
+    winningPoint: "",
+    banner: "Are You Ready?",
+    double6: "In case of 6:6, turn over",
   };
 
   updatePlayerSelection(firstDice, secondDice) {
@@ -55,23 +55,42 @@ export default class GamePresentation extends Component {
     let secondDice = Math.ceil(Math.random() * 6);
     if (firstDice === 6 && secondDice === 6) {
       this.setState({
+        double6: "6:6 Go Home!",
+      });
+      if (this.state.player1.isCurrent) {
+        this.setState({
+          player1: {
+            count: 0,
+            total: 0,
+            isCurrent: false,
+          },
+        });
+      } else {
+        this.setState({
+          player2: {
+            count: 0,
+            total: 0,
+            isCurrent: false,
+          },
+        });
+      }
+    } else {
+      this.setState({
         dice: [firstDice, secondDice],
       });
     }
-    this.setState({
-      dice: [firstDice, secondDice],
-    });
-    this.updatePlayerSelection(firstDice, secondDice);
 
-    this.whoIsWinner(maxPoints);
+    this.updatePlayerSelection(firstDice, secondDice);
   }
 
-  winnerCheck() {
-    if (this.state.player1.total >= this.state.winningPoint) {
+  winnerCheck(score) {
+    console.log("score", score);
+    if (this.state.player1.total >= score) {
       this.setState({
         banner: "Player 1 Wins!",
       });
-    } else {
+    }
+    if (this.state.player2.total >= score) {
       this.setState({
         banner: "Player 2 Wins!",
       });
@@ -85,6 +104,9 @@ export default class GamePresentation extends Component {
         total: 0,
         isCurrent: true,
       },
+      winningPoint: "",
+      banner: "Are You Ready?",
+      double6: "In case of 6:6, turn over",
     });
 
     this.setState({
@@ -93,12 +115,14 @@ export default class GamePresentation extends Component {
         total: 0,
         isCurrent: false,
       },
+      winningPoint: "",
+      banner: "Are You Ready?",
+      double6: "In case of 6:6, turn over",
     });
   }
 
   playerHold() {
     let currentPlayer = this.state.player1.isCurrent ? "player1" : "player2";
-    console.log("playerHold", [currentPlayer]);
     this.setState({
       [currentPlayer]: {
         count: "",
@@ -107,6 +131,8 @@ export default class GamePresentation extends Component {
         isCurrent: true,
       },
     });
+    console.log(winningScore);
+    this.winnerCheck(winningScore);
     this.switchPlayers();
   }
 
@@ -140,9 +166,18 @@ export default class GamePresentation extends Component {
     }
   }
 
+  winPoints = (e) => {
+    winningScore = e.target.value;
+    this.setState({
+      winningPoint: winningScore,
+    });
+  };
+
   // TODO check if it is possible to win by gap from the winning score
 
   render() {
+    // console.log(this.state.winningPoint);
+    // console.log(this.state.banner);
     const die = [img1, img2, img3, img4, img5, img6];
     return (
       <div className="game-board">
@@ -151,7 +186,7 @@ export default class GamePresentation extends Component {
             playerName="player 1"
             count={this.state.player1.count}
             total={this.state.player1.total}
-            stroke={this.state.player1.isCurrent && "active-background"}
+            stroke={this.state.player1.isCurrent ? "active-background" : "null"}
           />
         </div>
         <div className="game-control">
@@ -161,6 +196,11 @@ export default class GamePresentation extends Component {
               text="Start Again"
             />
           </div>
+          <div className="messages">
+            <p>{this.state.banner}</p>
+            <p>{this.state.double6}</p>
+            <p>Winning Score: {winningScore}</p>
+          </div>
           <div className="bottom">
             <Dice imgSrc={die[this.state.dice[0] - 1]} />
             <Dice imgSrc={die[this.state.dice[1] - 1]} />
@@ -169,9 +209,7 @@ export default class GamePresentation extends Component {
             <div className="winning-score">
               <input
                 type="text"
-                onChange={(e) =>
-                  this.setState({ winningPoint: e.target.value })
-                }
+                onChange={this.winPoints}
                 placeholder="Winning Score"
               ></input>
             </div>
@@ -182,7 +220,7 @@ export default class GamePresentation extends Component {
             playerName="player 2"
             count={this.state.player2.count}
             total={this.state.player2.total}
-            stroke={this.state.player2.isCurrent && "active-background"}
+            stroke={this.state.player2.isCurrent ? "active-background" : ""}
           />
         </div>
       </div>

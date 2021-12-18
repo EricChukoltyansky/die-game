@@ -1,6 +1,9 @@
 body {
   background-image: url("https://images.pexels.com/photos/1111597/pexels-photo-1111597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .game-board {
@@ -15,7 +18,7 @@ body {
   z-index: 1;
   position: absolute;
   left: 50%;
-  transform: translateX(-44%);
+  transform: translateX(-46%);
   height: 100%;
   text-align: center;
   display: flex;
@@ -24,6 +27,7 @@ body {
 
 .btn-container {
   text-align: center;
+  border: 1px solid black;
 }
 
 .player-container {
@@ -35,15 +39,36 @@ body {
 }
 
 .top {
-   /* border: 1px solid black; */
   text-align: center;
-  margin-right: 55px;
 }
 
 .bottom {
-  /* // border: 1px solid black; */
-  /* // transform: : translate(); */
-  display: flex;
   flex-direction: column;
-  margin-top: 60%;
+
+  margin-top: 60px;
+}
+
+.messages {
+  width: 100%;
+  height: 23%;
+  border: 2px solid black;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.messages p {
+  font-size: 30px;
+}
+
+@media (max-width: 760px) {
+  .messages {
+    margin-top: 180px;
+   
+  }
+}
+
+@media (max-width: 555px) {
+.messages {
+  height:29%
+}
 }
