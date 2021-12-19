@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "../components/Button/Button";
 import Dice from "../components/Dices/Dice";
 import Player from "../components/Player/Player";
+import Music from "../components/Music/Music";
 import "./GamePresentation.styles.css";
 import img1 from "../components/images/dice-1.png";
 import img2 from "../components/images/dice-2.png";
@@ -175,10 +176,10 @@ export default class GamePresentation extends Component {
           "player2Total",
           JSON.stringify(this.state.player2.total)
         );
+        this.winnerCheck(winningScore);
       }
     );
     console.log(winningScore);
-    this.winnerCheck(winningScore);
     this.switchPlayers();
   }
 
@@ -241,15 +242,29 @@ export default class GamePresentation extends Component {
             />
           </div>
           <div className="messages">
-            <p>{this.state.banner}</p>
-            <p>{this.state.double6}</p>
+            <p
+              className={
+                this.state.banner !== "Are You Ready?" ? "red-stroke" : ""
+              }
+            >
+              {this.state.banner}
+            </p>
+            <p
+              className={
+                this.state.double6 === "6:6 Go Home!" ? "red-stroke" : "null"
+              }
+            >
+              {this.state.double6}
+            </p>
             <p>Winning Score: {winningScore}</p>
           </div>
           <div className="bottom">
             <Dice imgSrc={die[this.state.dice[0] - 1]} />
             <Dice imgSrc={die[this.state.dice[1] - 1]} />
+
             <Button onClickFunction={() => this.throwDice()} text="Roll Dice" />
             <Button onClickFunction={() => this.playerHold()} text="Hold" />
+            <Music url="./audio/audio.mp3" />
             <div className="winning-score">
               <input
                 type="text"
