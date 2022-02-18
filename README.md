@@ -1,70 +1,100 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dice Game
 
-## Available Scripts
+Play against your friend a dice game that is determinded by the higher score a player receives
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Demo
+Working live demo
 
-### `npm test`
+https://thirsty-jennings-3c591c.netlify.app/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Authors
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [@EricChukoltynsky](https://github.com/EricChukoltyansky)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Acknowledgements
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ - [4th part of a video about react and the use of state](https://www.youtube.com/watch?v=dMH1_YtUTSQ&ab_channel=DevEd)
+ - [Great jazz noir music, part of the vibe of the styling behind the game](https://www.youtube.com/watch?v=_3acuUz5LvY&ab_channel=LolitaRitmanis-Topic)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Documentation
 
-## Learn More
+[React](https://reactjs.org/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To deploy this project run
 
-### Making a Progressive Web App
+```bash
+  npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## FAQ
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### How do i win?
 
-### Deployment
+You should collect the higher score possible, the game is not very complex I admit, mainly done to practice React :)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### What happens if there is a double score?
 
-### `npm run build` fails to minify
+Turns switch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### How do I start the game?
+
+Enter a winning amount first, which you get to decide, then,  press the 'roll dice' button
+
+#### Should I click the music button first?
+
+Of course! it's the most crucial part of the app
+
+
+
+
+
+
+
+## Features
+
+- Roll dice button
+- Winning amount input
+- Play/pause music button
+- Switch turn and emphasize color of current player automatically
+- Score counter
+- Neat die design
+- Mobile friendly
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at erik.chukoltyansky@gmail.com
+
+
+## Lessons Learned
+
+- Using React class components
+- Using React state
+- Implementing audio in React
+- Git work
+- Time management working relatively complex React app
+
+
+
+## Tech Stack
+
+**Client:** React, CSS
+
+
+

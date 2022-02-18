@@ -2,10 +2,9 @@ button {
   width: 80px;
   height: 30px;
   border-radius: 25px;
-  font-family: "Abel", sans-serif;
+
   font-weight: 600;
   border: none;
   cursor: pointer;
   margin-bottom: 10px;
-  
 }
